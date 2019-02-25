@@ -8,9 +8,9 @@
 </head>
 <style>
      .container{
-             margin-left: 20%;
+             /* margin-left: 20%;
              width: 55%;
-             border: 1px solid blue;
+             border: 1px solid blue; */
              padding: 10px;
         }
 
@@ -21,8 +21,8 @@
     }
 
     .logo img{
-        width: 15%;
-        height: 15%;
+        width: 10%;
+        height: 10%;
     }
 
     img:hover{
@@ -44,7 +44,7 @@
     .information-page ul li{
         display: inline;
         padding: 2px;
-        margin-left: 70px;
+        margin-left: 150px;
         border: 1px solid gray;
     }
 
@@ -58,8 +58,8 @@
     .Side-list{
         float: left;
         padding: 10px;
-        width:20%;
-        height: 220px;
+        width:15%;
+        height: 450px;
         background-color: gray;
         border: 1px solid blue;
     }
@@ -69,34 +69,57 @@
     }
 
     .Sign-up h2{
-        text-align: right;
-        margin-right: 200px;
+        text-align: center;
+        /* margin-right: 200px; */
     }
 
     .forms{
-        width: 50%;
         text-align: left;
-        background-color: gray;
+        background-color: rgb(231, 229, 229);
         padding: 10px;
-        margin-left: 280px;
+        margin-left: 230px;
         border-radius: 5px;
         border:1px solid blue;
+        
     }
 
     button{
-        text-align: center;
+        text-align: right;
         border-radius: 10px;
         }
+
+
+    #box{
+        display:flex;
+        justify-content: space-between;
+
+        }
+    
+    input{
+        background: transparent !important}
+       
 
 </style>
 
 <script>
 
-    function doInventory(){
-        var square-mts = parseInt(document.getElementById('square-mts').innerHTML);
-        alert (square-mts);
+    function doInventory(property,ppsm,sop,subtotal,grandtotal){
+        var ppsm = parseInt(document.getElementById(ppsm).innerHTML); 
+        var sop = parseInt(document.getElementById(sop).value);
 
+        var total = ppsm * sop;
+        var vat = (5 * total)/100;
+        var cofo = (15 * total)/100;
+
+        document.getElementById(subtotal).innerHTML = total;
+        document.getElementById(grandtotal).innerHTML = total + vat + cofo;
     }
+
+    
+    window.onload=function(){
+        alert('Done Loading! you may continue')
+    }
+  
 </script>
 
 <body>
@@ -138,42 +161,139 @@
         <div class="forms">
             <form action="">
                 <br>
-               Name: <input type="Username"> <br> <br>
-               Phone Num: <input type="password"> <br> <br>
-               Address: <input type="password"> <br> <br>
+               Name: <input type="Username" size="100"> <br> <br>
+               Phone Num: <input type="password"size="100"> <br> <br>
+               Address: <input type="password"size="100"> <br> <br>
                </form>
-                <br> <br>
             
                 <h3>Property Information:</h3> <br>
 
-                <strong>Property</strong> <br>
+                <!-- this is line box one -->
+            <div id="box">
+                <strong>Property:</strong> <br>
             <span id="property">Land</span>
 
             <br>
 
-            <strong>Square meters</strong> <br>
-            <span id="square-mts">500</span>
+            <strong>Property persquare meters:</strong> <br>
+            <span id="ppsm">500</span>
 
             <br>
 
-            <strong>Price</strong> <br>
-            <input onclick="doInventory()" type="text" name="box1" size="2">
+            <strong>Square meter of Purchase:</strong> <br>
+            <input onkeyup="doInventory('property','ppsm','sop','subtotal','grandtotal')" type="text" id="sop" size="5">
             
                <br>
 
-            <strong>Amount</strong> <br>
-            <span id="amount">5000</span>
-   
+               <strong>Sub Total:(&#8358;)</strong> <br>
+            <span id="subtotal">0</span>
+               
             <br>
 
-            <button type="submit" class="btn" onclick="doInventory">
-                click to Login
+            <strong>Grand Total:(&#8358;)</strong> <br>
+            <span id="grandtotal">0</span>
+        
+            <br>
+        </div>
+        <br>
+
+        <!-- this is line box two -->
+        <div id="box">
+            <strong>Property:</strong> <br>
+        <span id="property_1">Building</span>
+
+        <br>
+
+        <strong>Square meters of building:</strong> <br>
+        <span id="ppsm_1">620</span>
+
+        <br>
+
+        <strong>Square meter of Purchase:</strong> <br>
+        <input onkeyup="doInventory('property_1','ppsm_1','sop_1','subtotal_1','grandtotal_1')" type="text" id="sop_1" size="5">
+        
+           <br>
+
+           <strong>Sub Total:(&#8358;)</strong> <br>
+        <span id="subtotal_1">0</span>
+           
+        <br>
+
+        <strong>Grand Total:(&#8358;)</strong> <br>
+        <span id="grandtotal_1">0</span>
+    
+        <br>
+    </div>
+    <br>
+        <!-- this is line box three -->
+        <div id="box">
+            <strong>Property:</strong> <br>
+        <span id="property_2">Land</span>
+
+        <br>
+
+        <strong>Property persquare meters:</strong> <br>
+        <span id="ppsm_2">500</span>
+
+        <br>
+
+        <strong>Square meter of Purchase:</strong> <br>
+        <input onkeyup="doInventory('property_2','ppsm_2','sop_2','subtotal_2','grandtotal_2')" type="text" id="sop_2" size="5">
+        
+           <br>
+
+           <strong>Sub Total:(&#8358;)</strong> <br>
+        <span id="subtotal_2">0</span>
+           
+        <br>
+
+        <strong>Grand Total:(&#8358;)</strong> <br>
+        <span id="grandtotal_2">0</span>
+    
+        <br>
+    </div>
+
+    <br>
+<!-- this is line box four -->
+    <div id="box">
+        <strong>Property:</strong> <br>
+    <span id="property_3">House</span>
+
+    <br>
+
+    <strong>Square meters of House:</strong> <br>
+    <span id="ppsm_3">620</span>
+
+    <br>
+
+    <strong>Square meter of Purchase:</strong> <br>
+    <input onkeyup="doInventory('property_3','ppsm_3','sop_3','subtotal_3','grandtotal_3')" type="text" id="sop_3" size="5">
+
+    <br>
+
+    <strong>Sub Total:(&#8358;)</strong> <br>
+    <span id="subtotal_3">0</span>
+    
+    <br>
+
+    <strong>Grand Total:(&#8358;)</strong> <br>
+    <span id="grandtotal_3">0</span>
+
+<br>
+</div>
+
+    <br> <br>
+            <button type="submit" class="btn">
+                click to Pay
+            </button>
+
+            <button type="submit" onclick="window.print()" style="text-align: right; margin-left: 80%">
+                complete order
             </button>
 
         </div>
 
-        
-        
+      
     </div>
 </body>
 </html>
