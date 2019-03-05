@@ -21,8 +21,8 @@
     }
 
     .logo img{
-        width: 10%;
-        height: 10%;
+        width: 15%;
+        height: 15%;
     }
 
     img:hover{
@@ -59,7 +59,7 @@
         float: left;
         padding: 10px;
         width:15%;
-        height: 450px;
+        height: 380px;
         background-color: gray;
         border: 1px solid blue;
     }
@@ -96,26 +96,37 @@
         }
     
     input{
-        background: transparent !important}
-       
+        background: none !important;
+        }
 
 </style>
 
 <script>
 
-    function doInventory(property,ppsm,sop,subtotal,grandtotal){
-        var ppsm = parseInt(document.getElementById(ppsm).innerHTML); 
-        var sop = parseInt(document.getElementById(sop).value);
+    function doInventory(){
+        var ppsm = parseInt(document.getElementById('ppsm').innerHTML);
+        var sop = parseInt(document.getElementById('sop').value);
 
         var total = ppsm * sop;
         var vat = (5 * total)/100;
         var cofo = (15 * total)/100;
 
-        document.getElementById(subtotal).innerHTML = total;
-        document.getElementById(grandtotal).innerHTML = total + vat + cofo;
+        document.getElementById('subtotal').innerHTML = total;
+        document.getElementById('grandtotal').innerHTML = total + vat + cofo;
     }
 
-    
+     function doInventory(boxtwo){
+        var ppsm = parseInt(document.getElementById('ppsm').innerHTML);
+        var sop = parseInt(document.getElementById('sop').value);
+
+        var total = ppsm * sop;
+        var vat = (5 * total)/100;
+        var cofo = (15 * total)/100;
+
+        document.getElementById('subtotal').innerHTML = total;
+        document.getElementById('grandtotal').innerHTML = total + vat + cofo;
+    }
+
     window.onload=function(){
         alert('Done Loading! you may continue')
     }
@@ -175,13 +186,13 @@
 
             <br>
 
-            <strong>Property persquare meters:</strong> <br>
+            <strong>PPSM:</strong> <br>
             <span id="ppsm">500</span>
 
             <br>
 
-            <strong>Square meter of Purchase:</strong> <br>
-            <input onkeyup="doInventory('property','ppsm','sop','subtotal','grandtotal')" type="text" id="sop" size="5">
+            <strong>SOP:</strong> <br>
+            <input onkeyup="doInventory()" type="text" id="sop" size="5">
             
                <br>
 
@@ -200,94 +211,36 @@
         <!-- this is line box two -->
         <div id="box">
             <strong>Property:</strong> <br>
-        <span id="property_1">Building</span>
+        <span id="property">Land</span>
 
         <br>
 
-        <strong>Square meters of building:</strong> <br>
-        <span id="ppsm_1">620</span>
+        <strong>PPSM:</strong> <br>
+        <span id="ppsm">500</span>
 
         <br>
 
-        <strong>Square meter of Purchase:</strong> <br>
-        <input onkeyup="doInventory('property_1','ppsm_1','sop_1','subtotal_1','grandtotal_1')" type="text" id="sop_1" size="5">
+        <strong>SOP:</strong> <br>
+        <input onkeyup="doInventory(boxtwo)" type="text" id="sop" size="5">
         
            <br>
 
            <strong>Sub Total:(&#8358;)</strong> <br>
-        <span id="subtotal_1">0</span>
+        <span id="subtotal">0</span>
            
         <br>
 
         <strong>Grand Total:(&#8358;)</strong> <br>
-        <span id="grandtotal_1">0</span>
+        <span id="grandtotal">0</span>
     
         <br>
     </div>
     <br>
-        <!-- this is line box three -->
-        <div id="box">
-            <strong>Property:</strong> <br>
-        <span id="property_2">Land</span>
-
-        <br>
-
-        <strong>Property persquare meters:</strong> <br>
-        <span id="ppsm_2">500</span>
-
-        <br>
-
-        <strong>Square meter of Purchase:</strong> <br>
-        <input onkeyup="doInventory('property_2','ppsm_2','sop_2','subtotal_2','grandtotal_2')" type="text" id="sop_2" size="5">
-        
-           <br>
-
-           <strong>Sub Total:(&#8358;)</strong> <br>
-        <span id="subtotal_2">0</span>
-           
-        <br>
-
-        <strong>Grand Total:(&#8358;)</strong> <br>
-        <span id="grandtotal_2">0</span>
-    
-        <br>
-    </div>
-
-    <br>
-<!-- this is line box four -->
-    <div id="box">
-        <strong>Property:</strong> <br>
-    <span id="property_3">House</span>
-
-    <br>
-
-    <strong>Square meters of House:</strong> <br>
-    <span id="ppsm_3">620</span>
-
-    <br>
-
-    <strong>Square meter of Purchase:</strong> <br>
-    <input onkeyup="doInventory('property_3','ppsm_3','sop_3','subtotal_3','grandtotal_3')" type="text" id="sop_3" size="5">
-
-    <br>
-
-    <strong>Sub Total:(&#8358;)</strong> <br>
-    <span id="subtotal_3">0</span>
-    
-    <br>
-
-    <strong>Grand Total:(&#8358;)</strong> <br>
-    <span id="grandtotal_3">0</span>
-
-<br>
-</div>
-
-    <br> <br>
             <button type="submit" class="btn">
                 click to Pay
             </button>
 
-            <button type="submit" onclick="window.print()" style="text-align: right; margin-left: 80%">
+            <button type="submit" onclick="window.print()" style="text-align: right">
                 complete order
             </button>
 
