@@ -1,3 +1,23 @@
+<?php
+
+    //connect to database
+    $host = '127.0.0.1';
+    $username = 'root';
+    $password = '';
+    $dbname = 'test_umbrella';
+
+    $db_connection = new mysqli($host,$username,$password,$dbname);
+
+    if($db_connection->connect_error){
+        print_r($db_connection->connect_error);
+    }
+    
+    $property_id = $_GET['id'];
+    $property_select_statement = "SELECT * FROM properties WHERE id='$property_id'";
+    $property = $db_connection->query($property_select_statement);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +35,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>KPL | Inventory</title>
+        <link href="css/styles.css" rel="stylesheet" />
     </head>
     <style>
          .container{
@@ -65,14 +86,7 @@
             color: white;
         }
     
-        .Side-list{
-            float: left;
-            padding: 10px;
-            width:20%;
-            height: 630px;
-            background-color: gray;
-            border: 1px solid blue;
-        }
+      
     
         a{
             line-height: 50px;
@@ -102,6 +116,7 @@
             }
     
     </style>
+
     <body>
         <div class="container">
             <div class="cover-all">
@@ -139,16 +154,24 @@
             </div>
     
            <div class="property">
-                <a href="#">1.  Lands at Ajah</a> <br>
-                <a href="#">2.  Lands at Lekki</a> <br>
-                <a href="#">3.  Housing at Magodo</a> <br>
-                <a href="#">4.  Housingn on the Mainland</a> <br>
-                <a href="#">5.  Houses at Shimawa</a> <br>
-                <a href="#">6.  Lands at Redeem Camp</a> <br>
-                <a href="#">7.  Houses at Sango</a> <br>
-                <a href="#">8.  Lands in Ogun State</a> <br>
-                <a href="#">9.  Land in Epe</a> <br>
-                <a href="#">10. Houses on the Island</a> <br>
+            <?php 
+            if($property->num_rows > 0){
+                
+                while($row = $property->fetch_assoc()) {
+                    
+                    echo $row['property_name'] . "<br />";
+                    echo "<img src='" .$row['image'] ."' width='40%' /> <br />";
+                    echo "Price: " . $row['ppsm'] . "<br />";
+                    echo "Available Saure Meters " . $row['square_meter'] ;
+
+                }
+
+            }
+
+             
+
+            ?>
+
             <br> <br>
                 <button type="menu"> Back </button> 
                <button type="menu"> Next </button>
